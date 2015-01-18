@@ -1,0 +1,16 @@
+{
+"domain":
+{
+"name": "Runner"
+},
+"workflow_workers": [
+{
+"task_list": "mostaDefault"
+}
+],
+"activity_workers": [
+{
+"task_list": "mostaActivityDefault"
+}
+]
+}
