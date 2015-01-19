@@ -29,11 +29,13 @@ class PeriodicActivity
   end
 
   def do_some_work(parameter)
-    r = Random.rand(3)
-    sleep r
-    run_id = activity_execution_context.workflow_execution.run_id
-    puts "Run Id:#{run_id}, do some periodic task here for #{r} second(s) with parameter=#{parameter}"
-    return r 
+    URLsFile = "WorkUnit/urls.txt"
+    id = 0
+    File.readlines(URLsFile).each do |url|
+    system("python WorkUnit/DoWork.py '"+id.to_s+"' '"+url+"'")
+    id = id + 1
+    end
+
   end
 end
 
