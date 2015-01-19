@@ -1,16 +1,16 @@
 {
 "domain":
 {
-"name": "Runner"
+"name": "runner"
 },
 "workflow_workers": [
 {
-"task_list": "mostaDefault"
+"task_list": "periodic_workflow_task_list"
 }
 ],
 "activity_workers": [
 {
-"task_list": "mostaActivityDefault"
+"task_list": "periodic_activity_task_list"
 }
 ]
 }
