@@ -33,6 +33,7 @@ class PeriodicActivity
     sleep r
     run_id = activity_execution_context.workflow_execution.run_id
     puts "Run Id:#{run_id}, do some periodic task here for #{r} second(s) with parameter=#{parameter}"
+    return r 
   end
 end
 
