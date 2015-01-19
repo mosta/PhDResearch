@@ -29,13 +29,14 @@ class PeriodicActivity
   end
 
   def do_some_work(parameter)
+    result = "mosta"
     url_file = "WorkUnit/urls.txt"
     id = 0
     File.readlines(url_file).each do |url|
-    system("python WorkUnit/DoWork.py '"+id.to_s+"' '"+url+"'")
+    result = system("python WorkUnit/DoWork.py '"+id.to_s+"' '"+url+"'")
     id = id + 1
     end
-
+   result
   end
 end
 
