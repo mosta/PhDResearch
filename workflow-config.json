@@ -1,7 +1,7 @@
 {
 "domain":
 {
-"name": "Periodic"
+"name": "TestPeriodic"
 },
 "workflow_workers": [
 {
