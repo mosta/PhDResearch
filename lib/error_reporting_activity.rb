@@ -22,8 +22,8 @@ class ErrorReportingActivity
     {
       :version => "1.0",
       :default_task_list => $error_activity_task_list,
-      :default_task_schedule_to_start_timeout => 30,
-      :default_task_start_to_close_timeout => 30,
+      :default_task_schedule_to_start_timeout => 300,
+      :default_task_start_to_close_timeout => 300,
     }
   end
 
