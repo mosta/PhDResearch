@@ -36,7 +36,6 @@ class PeriodicActivity
 	result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
     	id = id + 1
     end
-   result
   end
 end
 
