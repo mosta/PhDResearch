@@ -15,7 +15,7 @@
 
 require 'aws/decider'
 
-$PERIODIC_DOMAIN = "Periodic"
+$PERIODIC_DOMAIN = "TestPeriodic"
 #config_file = File.open('credentials.cfg') { |f| f.read }
 #AWS.config(YAML.load(config_file))
 
