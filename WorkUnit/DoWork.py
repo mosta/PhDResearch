@@ -51,6 +51,11 @@ def getSnapshotofURL(ID, URL, timestamp):
 timenow = str(calendar.timegm(time.gmtime()))
 ID = sys.argv[1]
 URL = sys.argv[2]
-getSnapshotofURL(ID, URL, timenow)
-getTopsyTweets(ID, URL,timenow)
+fileOut = open("logger.log", "w")
+fileOut.write("Read params\n")
+fileOut.write(str(ID)+"\n")
+fileOut.write(str(URL)+"\n")
+fileOut.close()
+#getSnapshotofURL(ID, URL, timenow)
+#getTopsyTweets(ID, URL,timenow)
 
