@@ -22,20 +22,19 @@ class PeriodicActivity
     {
       :version => "1.0",
       :default_task_list => $activity_task_list,
-      :default_task_schedule_to_start_timeout => 300,
-      :default_task_start_to_close_timeout => 300,
+      :default_task_schedule_to_start_timeout => 3600,
+      :default_task_start_to_close_timeout => 3600,
 
     }
   end
 
   def do_some_work(parameter)
     Dir.chdir("WorkUnit/")
-    result = "mosta"
-    url_file = "urls.txt"
+    url_file = "/home/ec2-user/PhDresearch/urls.txt"
     id = 0
     File.readlines(url_file).each do |url|
-    result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
-    id = id + 1
+	result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
+    	id = id + 1
     end
    result
   end

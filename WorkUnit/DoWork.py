@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import commands
 import urllib2
 import re, math
-import sys
+import os
 from operator import itemgetter
 from datetime import datetime
 import io, json
@@ -12,7 +12,7 @@ import calendar
 import time
 
 
-def getTopsyTweets(ID, URL, timestamp):
+def getTopsyTweets(path, ID, URL, timestamp):
 	results = []
 	try:	
 		offset = 0
@@ -37,12 +37,12 @@ def getTopsyTweets(ID, URL, timestamp):
 		print sys.exc_info()
 		
 	
-	with open("Snapshots/"+ID+"_"+timestamp+".topsy", 'w') as outfile:
+	with open(path+ID+"_"+timestamp+".topsy", 'w') as outfile:
 		json.dump(results, outfile)
 
-def getSnapshotofURL(ID, URL, timestamp):
-	page = commands.getoutput("casperjs/bin/casperjs takesnapshot.js '"+URL+"' '"+ID+"_"+timestamp+"'")
-	fileout = open("Snapshots/"+ID+"_"+timestamp+".html", 'w')
+def getSnapshotofURL(path, ID, URL, timestamp):
+	page = commands.getoutput("casperjs/bin/casperjs takesnapshot.js '"+URL+"' '"+path+"' '"+ID+"_"+timestamp+"'")
+	fileout = open(path+ID+"_"+timestamp+".html", 'w')
 	fileout.write(page)
 	fileout.close()
 
@@ -56,6 +56,9 @@ fileOut.write("Read params\n")
 fileOut.write(str(ID)+"\n")
 fileOut.write(str(URL)+"\n")
 fileOut.close()
-#getSnapshotofURL(ID, URL, timenow)
-#getTopsyTweets(ID, URL,timenow)
+path = "/home/ec2-user/PhDresearch/CollectedData/"+ID+"/"
+if(os.path.exists(path)==False):
+	commands.getoutput("mkdir "+path)
+getSnapshotofURL(path, ID, URL, timenow)
+getTopsyTweets(path, ID, URL,timenow)
 

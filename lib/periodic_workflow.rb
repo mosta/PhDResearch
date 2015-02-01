@@ -25,7 +25,7 @@ class PeriodicWorkflow
     {
       :version => "1.0",
       :task_list => $workflow_task_list,
-      :execution_start_to_close_timeout => 120,
+      :execution_start_to_close_timeout => 3600,
     }
   end
 
