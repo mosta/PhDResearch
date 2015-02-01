@@ -56,7 +56,7 @@ fileOut.write("Read params\n")
 fileOut.write(str(ID)+"\n")
 fileOut.write(str(URL)+"\n")
 fileOut.close()
-path = "/home/ec2-user/PhDresearch/CollectedData/"+ID+"/"
+path = "/srv/www/phdresearch/CollectedData/"+ID+"/"
 if(os.path.exists(path)==False):
 	commands.getoutput("mkdir "+path)
 getSnapshotofURL(path, ID, URL, timenow)
