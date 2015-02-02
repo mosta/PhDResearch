@@ -70,7 +70,7 @@ class PeriodicWorkflow
     duration = current_time - start_time
     if(duration < @periodic_workflow_options.continue_as_new_after_seconds)
      i = 0
-      while(i<5000) do
+      while(i<2900) do
       activity_args = i
       activity_future = activity.send_async("#{activity_name}", *activity_args ) do
         {
