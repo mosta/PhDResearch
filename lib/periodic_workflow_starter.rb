@@ -51,7 +51,7 @@ domain = setup_domain(domain_name, retention_period)
 my_workflow_client = workflow_client($swf.client, domain) { {:from_class => "PeriodicWorkflow"} }
 
 puts "starting an execution..."
-running_options = PeriodicWorkflowOptions.new(3600,true,3600,307584)
+running_options = PeriodicWorkflowOptions.new(60,true,60,307584)
 activity_name ="do_some_work"
 prefix_name ="PeriodicActivity"
 activity_args=["parameter1"]
