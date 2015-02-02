@@ -31,6 +31,7 @@ class PeriodicActivity
   def do_some_work(parameter)
     Dir.chdir("WorkUnit/")
     url_file = "/srv/www/phdresearch/urls.txt"
+    puts "Mosta" + parameter.to_s
     id = 0
     File.readlines(url_file).each do |url|
 	result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")

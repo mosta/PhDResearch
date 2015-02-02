@@ -69,12 +69,16 @@ class PeriodicWorkflow
     current_time = @periodic_workflow_clock.replay_current_time_millis
     duration = current_time - start_time
     if(duration < @periodic_workflow_options.continue_as_new_after_seconds)
-
+     i = 0
+      while(i<5000) do
+      activity_args = i
       activity_future = activity.send_async("#{activity_name}", *activity_args ) do
         {
           :activity_name => "#{prefix_name}",
         }
       end
+      i+=100
+     end
 
       timer_future = create_timer_async(@periodic_workflow_options.execution_period_seconds)
 
