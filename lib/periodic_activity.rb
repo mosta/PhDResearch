@@ -20,10 +20,10 @@ class PeriodicActivity
 
   activity :do_some_work do
     {
-      :version => "3.0",
+      :version => "4.0",
       :default_task_list => $activity_task_list,
-      :default_task_schedule_to_start_timeout => 60,
-      :default_task_start_to_close_timeout => 60,
+      :default_task_schedule_to_start_timeout => 6000,
+      :default_task_start_to_close_timeout => 6000,
 
     }
   end

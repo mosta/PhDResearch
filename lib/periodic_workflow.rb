@@ -23,10 +23,10 @@ class PeriodicWorkflow
 
   workflow :start_periodic_workflow do
     {
-      :version => "3.0",
+      :version => "4.0",
       :task_list => $workflow_task_list,
-      :execution_start_to_close_timeout => 60,
-      :task_start_to_close_timeout => 60,
+      :execution_start_to_close_timeout => 6000,
+      :task_start_to_close_timeout => 6000,
     }
   end
 
