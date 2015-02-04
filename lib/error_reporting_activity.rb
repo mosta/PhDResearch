@@ -20,7 +20,7 @@ class ErrorReportingActivity
 
   activity :report_failure do
     {
-      :version => "11.0",
+      :version => "12.0",
       :default_task_list => $error_activity_task_list,
       :default_task_schedule_to_start_timeout => 6000,
       :default_task_start_to_close_timeout => 6000,
