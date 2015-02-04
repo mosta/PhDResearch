@@ -23,7 +23,7 @@ class PeriodicWorkflow
 
   workflow :start_periodic_workflow do
     {
-      :version => "6.0",
+      :version => "7.0",
       :task_list => $workflow_task_list,
       :execution_start_to_close_timeout => 6000,
       :task_start_to_close_timeout => 6000,
@@ -70,7 +70,7 @@ class PeriodicWorkflow
     duration = current_time - start_time
     if(duration < @periodic_workflow_options.continue_as_new_after_seconds)
      i = 0
-      while(i<300) do
+      while(i<10) do
       activity_args = i
       activity_future = activity.send_async("#{activity_name}", *activity_args ) do
         {
