@@ -23,7 +23,7 @@ class PeriodicWorkflow
 
   workflow :start_periodic_workflow do
     {
-      :version => "11.0",
+      :version => "12.0",
       :task_list => $workflow_task_list,
       :execution_start_to_close_timeout => 6000,
       :task_start_to_close_timeout => 6000,
@@ -42,9 +42,10 @@ class PeriodicWorkflow
     error_handler do |t|
       t.begin do
         i = 0
-        while(i<10) do
+        while(i<100) do
+          activity_args = i
           call_activity_periodically(start_time, prefix_name, activity_name, *activity_args)
-          i+=100
+          i+=10
         end
       end
 
