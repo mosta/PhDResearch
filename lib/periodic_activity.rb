@@ -40,6 +40,7 @@ class PeriodicActivity
 	end
 	id = id + 1
     end
+    result
   end
 end
 
