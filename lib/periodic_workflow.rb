@@ -23,7 +23,7 @@ class PeriodicWorkflow
 
   workflow :start_periodic_workflow do
     {
-      :version => "12.0",
+      :version => "13.0",
       :task_list => $workflow_task_list,
       :execution_start_to_close_timeout => 6000,
       :task_start_to_close_timeout => 6000,
@@ -41,12 +41,7 @@ class PeriodicWorkflow
 
     error_handler do |t|
       t.begin do
-        i = 0
-        while(i<100) do
-          activity_args = i
-          call_activity_periodically(start_time, prefix_name, activity_name, *activity_args)
-          i+=10
-        end
+        call_activity_periodically(start_time, prefix_name, activity_name, *activity_args)
       end
 
       t.rescue AWS::Flow::ActivityTaskFailedException do |e|
@@ -74,11 +69,15 @@ class PeriodicWorkflow
     current_time = @periodic_workflow_clock.replay_current_time_millis
     duration = current_time - start_time
     if(duration < @periodic_workflow_options.continue_as_new_after_seconds)
-     
-      activity_future = activity.send_async("#{activity_name}", *activity_args ) do
-        {
-          :activity_name => "#{prefix_name}",
-        }
+      i = 0
+      while(i<100) do
+        activity_args = i
+        activity_future = activity.send_async("#{activity_name}", *activity_args ) do
+          {
+            :activity_name => "#{prefix_name}",
+          }
+        end
+        i+=10
       end
 
       timer_future = create_timer_async(@periodic_workflow_options.execution_period_seconds)
