@@ -20,7 +20,7 @@ class PeriodicActivity
 
   activity :do_some_work do
     {
-      :version => "13.0",
+      :version => "14.0",
       :default_task_list => $activity_task_list,
       :default_task_schedule_to_start_timeout => 6000,
       :default_task_start_to_close_timeout => 6000,
@@ -36,7 +36,7 @@ class PeriodicActivity
     result = "ya rab"
     id = 0
     File.readlines(url_file).each do |url|
-	if id >=startID and id<startID+10
+	if id >=startID and id<startID+100
 		result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
 	end
 	id = id + 1
