@@ -20,7 +20,7 @@ class PeriodicActivity
 
   activity :do_some_work do
     {
-      :version => "11.0",
+      :version => "12.0",
       :default_task_list => $activity_task_list,
       :default_task_schedule_to_start_timeout => 6000,
       :default_task_start_to_close_timeout => 6000,
@@ -32,11 +32,11 @@ class PeriodicActivity
     Dir.chdir("WorkUnit/")
     url_file = "/srv/www/phdresearch/urls.txt"
     File.write('/srv/www/phdresearch/log.txt', parameter)
-    startID = 0
+    startID = parameter.to_i
     result = "ya rab"
     id = 0
     File.readlines(url_file).each do |url|
-	if id ==startID
+	if id >=startID and id<startID+10
 		result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
 	end
 	id = id + 1
