@@ -20,7 +20,7 @@ class PeriodicActivity
 
   activity :do_some_work do
     {
-      :version => "10.0",
+      :version => "11.0",
       :default_task_list => $activity_task_list,
       :default_task_schedule_to_start_timeout => 6000,
       :default_task_start_to_close_timeout => 6000,
@@ -33,6 +33,7 @@ class PeriodicActivity
     url_file = "/srv/www/phdresearch/urls.txt"
     File.write('/srv/www/phdresearch/log.txt', parameter)
     startID = 0
+    result = "ya rab"
     id = 0
     File.readlines(url_file).each do |url|
 	if id ==startID
