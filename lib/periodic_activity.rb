@@ -22,8 +22,8 @@ class PeriodicActivity
     {
       :version => "16.0",
       :default_task_list => $activity_task_list,
-      :default_task_schedule_to_start_timeout => 6000,
-      :default_task_start_to_close_timeout => 6000,
+      :default_task_schedule_to_start_timeout => 36000,
+      :default_task_start_to_close_timeout => 36000,
 
     }
   end
