@@ -14,13 +14,14 @@
 ##
 
 require_relative 'utils'
+require 'timeout'
 
 class PeriodicActivity
   extend AWS::Flow::Activities
 
   activity :do_some_work do
     {
-      :version => "18.0",
+      :version => "19.0",
       :default_task_list => $activity_task_list,
       :default_task_schedule_to_start_timeout => 3600,
       :default_task_start_to_close_timeout => 3600,
@@ -37,7 +38,12 @@ class PeriodicActivity
     id = 0
     File.readlines(url_file).each do |url|
 	if id >=startID and id<startID+100
-		result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
+		begin
+		  Timeout::timeout(200) do
+			result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
+		  end
+		rescue Timeout::Error
+		end
 	end
 	id = id + 1
     end
