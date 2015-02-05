@@ -12,7 +12,7 @@ import calendar
 import time
 from timeout import timeout
 
-@timeout(30)
+@timeout(60)
 def getTopsyTweets(path, ID, URL, timestamp):
         results = []
         try:
@@ -41,7 +41,7 @@ def getTopsyTweets(path, ID, URL, timestamp):
         with open(path+ID+"_"+timestamp+".topsy", 'w') as outfile:
                 json.dump(results, outfile)
 
-@timeout(30)
+@timeout(60)
 def getSnapshotofURL(path, ID, URL, timestamp):
         page = commands.getoutput("casperjs/bin/casperjs takesnapshot.js '"+URL+"' '"+path+"' '"+ID+"_"+timestamp+"'")
         fileout = open(path+ID+"_"+timestamp+".html", 'w')
