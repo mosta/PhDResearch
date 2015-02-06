@@ -56,10 +56,32 @@ URL = sys.argv[2]
 path = "/srv/www/phdresearch/CollectedData/"+ID+"/"
 if(os.path.exists(path)==False):
         commands.getoutput("mkdir "+path)
+        
+import boto
+from boto.s3.key import Key
+S3connection = boto.connect_s3()
+S3bucket = S3connection.get_bucket('longitudinalstudy')
 
 try:
 	getSnapshotofURL(path, ID, URL, timenow)
+	topsyFileName = ID+"_"+timenow+".topsy"
 	getTopsyTweets(path, ID, URL,timenow)
+	htmlFileName = ID+"_"+timenow+".html"
+	pngFileName = ID+"_"+timenow+".png"
+	
+	newfile = Key(S3bucket)
+	newfile.key = topsyFileName
+	newfile.set_contents_from_filename(path+topsyFileName)
+	newfile = Key(S3bucket)
+	newfile.key = htmlFileName
+	newfile.set_contents_from_filename(path+htmlFileName)
+	newfile = Key(S3bucket)
+	newfile.key = pngFileName
+	newfile.set_contents_from_filename(path+pngFileName)
+	
+	commands.getoutput("rm -f "+path+topsyFileName)
+	commands.getoutput("rm -f "+path+htmlFileName)
+	commands.getoutput("rm -f "+path+pngFileName)
 except:
 	pass
 
