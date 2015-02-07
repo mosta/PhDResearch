@@ -59,7 +59,7 @@ if(os.path.exists(path)==False):
         
 import boto
 from boto.s3.key import Key
-S3connection = boto.connect_s3()
+S3connection = S3Connection('AKIAIUREAVN6JDDZOHDQ', 'KqZaexKQEkCr3JpdaTMAaGsDga3o2JuOaxwWNzIU')
 S3bucket = S3connection.get_bucket('longitudinalstudy')
 
 try:
