@@ -58,8 +58,13 @@ if(os.path.exists(path)==False):
         commands.getoutput("mkdir "+path)
         
 import boto
+from boto.s3.connection import S3Connection
 from boto.s3.key import Key
-S3connection = S3Connection('AKIAIUREAVN6JDDZOHDQ', 'KqZaexKQEkCr3JpdaTMAaGsDga3o2JuOaxwWNzIU')
+
+json_data=open('/srv/www/phdresearch/awscredentials_s3.txt')
+data = json.load(json_data)
+json_data.close()
+S3connection = S3Connection(data["aws_key"],data["aws_secret"])
 S3bucket = S3connection.get_bucket('longitudinalstudy')
 
 try:
