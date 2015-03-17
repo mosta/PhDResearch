@@ -65,18 +65,18 @@ json_data=open('/srv/www/phdresearch/awscredentials_s3.txt')
 data = json.load(json_data)
 json_data.close()
 S3connection = S3Connection(data["aws_key"],data["aws_secret"])
-S3bucket = S3connection.get_bucket('longitudinalstudy')
+S3bucket = S3connection.get_bucket('longitudinalstudy.v2')
 
 try:
 	getSnapshotofURL(path, ID, URL, timenow)
-	topsyFileName = ID+"_"+timenow+".topsy"
-	getTopsyTweets(path, ID, URL,timenow)
+	#topsyFileName = ID+"_"+timenow+".topsy"
+	#getTopsyTweets(path, ID, URL,timenow)
 	htmlFileName = ID+"_"+timenow+".html"
 	pngFileName = ID+"_"+timenow+".png"
 	
-	newfile = Key(S3bucket)
-	newfile.key = topsyFileName
-	newfile.set_contents_from_filename(path+topsyFileName)
+	#newfile = Key(S3bucket)
+	#newfile.key = topsyFileName
+	#newfile.set_contents_from_filename(path+topsyFileName)
 	newfile = Key(S3bucket)
 	newfile.key = htmlFileName
 	newfile.set_contents_from_filename(path+htmlFileName)
@@ -84,7 +84,7 @@ try:
 	newfile.key = pngFileName
 	newfile.set_contents_from_filename(path+pngFileName)
 	
-	commands.getoutput("rm -f "+path+topsyFileName)
+	#commands.getoutput("rm -f "+path+topsyFileName)
 	commands.getoutput("rm -f "+path+htmlFileName)
 	commands.getoutput("rm -f "+path+pngFileName)
 except:
