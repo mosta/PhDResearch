@@ -38,7 +38,7 @@ class PeriodicActivity
     id = 0
     File.readlines(url_file).each do |url|
 	if id >=startID and id<startID+100
-		status = Timeout::timeout(360 {
+		status = Timeout::timeout(360) {
 			result = system("python DoWork.py '"+id.to_s+"' '"+url+"'")
 		}
 	end
