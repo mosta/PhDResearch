@@ -65,7 +65,7 @@ def work(ID, URL):
 	data = json.load(json_data)
 	json_data.close()
 	S3connection = S3Connection(data["aws_key"],data["aws_secret"])
-	S3bucket = S3connection.get_bucket('longitudinalstudy.v4')
+	S3bucket = S3connection.get_bucket('longitudinalstudy.v5')
 
 	try:
 		getSnapshotofURL(path, ID, URL, timenow)
